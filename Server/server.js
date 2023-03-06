@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(cors());
 
-
+//mongoose database
 main().catch(err => console.log(err));
 async function main(){
     await  await mongoose.connect('mongodb+srv://football1:football1@cluster0.6kgyhyt.mongodb.net/?retryWrites=true&w=majority');
