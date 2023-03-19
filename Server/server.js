@@ -1,6 +1,7 @@
+
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = 3000;
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 const cors = require('cors');
@@ -30,3 +31,4 @@ const teamModel = mongoose.model('Teams', teamSchema);
 app.listen(port, ()=> {
     console.log(`App listening on port ${port}`)
 })
+
