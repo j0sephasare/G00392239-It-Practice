@@ -2,28 +2,38 @@ import Reac,{useState,useEffect} from 'react'
 import '../App.css';
 import axios from 'axios';
 const Leagues = () => {
+    const [leagues, setLeagues] = useState([]);
 
-    const [data,setData] = useState([]);
-
-   useEffect(()=> {
-    axios('https://api-football-standings.azharimm.site/leagues').then(
-        (res) =>{
-            console.log(res.data);
+  useEffect(() => {
+    const fetchLeagues = async () => {
+      const options = {
+        method: 'GET',
+        url: 'https://api-football-v1.p.rapidapi.com/v3/leagues',
+        headers: {
+          'content-type': 'application/octet-stream',
+          'X-RapidAPI-Key': '1078899fe4mshd46dc715175878dp1a3a95jsna40193cb83aa',
+          'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com'
         }
+      };
+      try {
+        const response = await axios.request(options);
+        const filteredLeagues = response.data.response.filter((league) =>
+          [39, 78, 107, 61].includes(league.league.id)
+        );
+        setLeagues(filteredLeagues);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchLeagues();
+  }, []);
 
-    );
-
-
-   },[]);
   return (
-    <div className='leagues-container'>
-        {data.map((data) =>(
-        <div key = {data.id} className='League-div'>
-            <img src={data.logos.light} alt='#'/>
-            <h1>{data.name}</h1>
-        </div>
-        ))}</div>
-  )
+    <div>
+      {leagues.map((league) => (
+        <img src={league.league.logo} alt={league.league.name} key={league.league.id} />
+      ))}
+    </div>
+  );
 };
-
-export default Leagues
+export default Leagues;
