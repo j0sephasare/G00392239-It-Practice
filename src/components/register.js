@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -8,18 +8,16 @@ const Register = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
-    const response = await fetch('https://localhost:3000/api/register', {
-    method: 'POST',  
-    header: {
-        'Content-Type': 'application/json',
-
-      },
-      body: JSON.stringify({
+    try {
+      const response = await axios.post('http://localhost:4000/api/register', {
         name,
         email,
         password,
-      }),
-    })
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -59,4 +57,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Register

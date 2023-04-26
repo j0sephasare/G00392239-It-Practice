@@ -12,6 +12,10 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import Login from './login';
+import Register from './register';
+
+
 const Navbar1 = () => {
   return (
     <Router>
@@ -22,12 +26,17 @@ const Navbar1 = () => {
           <Nav className="me-auto">
             <Nav.Link href="/Highlights">HighLights</Nav.Link>
             <Nav.Link href="/Content">Content</Nav.Link>
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Link href="/register">Register</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
     <Routes>
       <Route path='/Highlights' element={<Highlights></Highlights>}></Route>
       <Route path='/Content' element={<Content></Content>}></Route>
+      <Route path='/login' element={<Login></Login>}></Route>
+      <Route path='/register' element={<Register></Register>}></Route>
+     
     </Routes>
     </div>
     </Router>
