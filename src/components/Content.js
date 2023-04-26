@@ -20,4 +20,4 @@ export function Content() {
       </div>
     )
 
-    }
+  }
