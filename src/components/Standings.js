@@ -1,9 +1,10 @@
 import React,{useState, useEffect} from 'react'
 import axios from 'axios';
+
 const Standings = () => {
 
   const [data, setData] = useState([]);
-  const [selectedLeague, setSelectedLeague] = useState('eng.1');
+  const [selectedLeague, setSelectedLeague] = useState('39');
   const [selectedYear, setSelectedYear] = useState('2022');
 
   useEffect(() => {
@@ -11,7 +12,7 @@ const Standings = () => {
       try {
         const response = await axios.get('https://api-football-v1.p.rapidapi.com/v3/teams', {
           params: {
-            league: '39',
+            league: selectedLeague,
             season: selectedYear,
           },
           headers: {
@@ -25,34 +26,7 @@ const Standings = () => {
       }
     };
     fetchTeams();
-  }, [selectedYear]);
-
-  const teamsOrder = [
-    'Man City',
-    'Liverpool',
-    'Chelsea',
-    'Tottenham',
-    'Arsenal',
-    'Man United',
-    'West Ham',
-    'Leicester City',
-    'Brighton',
-    'Wolves',
-    'Newcastle',
-    'Crystal Palace',
-    'Brentford',
-    'Aston Villa',
-    'Southampton',
-    'Everton',
-    'Leeds United',
-    'Burnley',
-    'Watford',
-    'Norwich City',
-  ];
-
-  const sortedData = data.sort((a, b) => {
-    return teamsOrder.indexOf(a.team.name) - teamsOrder.indexOf(b.team.name);
-  });
+  }, [selectedLeague, selectedYear]);
 
   return (
     <div className='standings-container'>
@@ -63,10 +37,11 @@ const Standings = () => {
           defaultValue={selectedLeague}
           onChange={(e) => setSelectedLeague(e.target.value)}
         >
-          <option value='eng.1'>English Premier League</option>
-          <option value='fra.1'>French Ligue 1</option>
-          <option value='ger.1'>German Bundesliga</option>
-          <option value='ita.1'>Italian Seria A</option>
+          <option value='39'>English Premier League</option>
+          <option value='61'>French Ligue 1</option>
+          <option value='78'>German Bundesliga</option>
+          <option value='135'>Italian Seria A</option>
+          <option value='140'>La Liga</option>
         </select>
         <select
           name='select-year'
@@ -74,13 +49,13 @@ const Standings = () => {
           defaultValue={selectedYear}
           onChange={(e) => setSelectedYear(e.target.value)}
         >
-          <option value='2021'>2021</option>
+          
           <option value='2022'>2022</option>
         </select>
       </div>
       <div className='standing-results'>
         <ul>
-          {sortedData.map((team, index) => (
+          {data.map((team, index) => (
             <li key={team.team.id}>
               <span>{index + 1}. </span>
               <img src={team.team.logo} alt={team.team.name} />
@@ -93,4 +68,4 @@ const Standings = () => {
   );
 };
 
-export default Standings
+export default Standings;

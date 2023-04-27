@@ -18,7 +18,7 @@ const Leagues = () => {
       try {
         const response = await axios.request(options);
         const filteredLeagues = response.data.response.filter((league) =>
-          [39, 78, 107, 61].includes(league.league.id)
+          [39, 78, 135, 61,140].includes(league.league.id)
         );
         setLeagues(filteredLeagues);
       } catch (error) {

@@ -69,4 +69,14 @@ select{
   justify-content: center;
   text-align: center;
 }
+.leagues-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.leagues-container img {
+  max-width: 100px;
+  margin-right: 20px;
+}
 
