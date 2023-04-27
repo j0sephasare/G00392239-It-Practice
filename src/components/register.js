@@ -62,9 +62,13 @@ const Register = () => {
               </label>
             </div>
             <button className="button login__submit" type="submit">
-              <span className="button__text">Sign Up</span>
+              <span className="button__text" >Sign Up</span>
               <i className="button__icon fas fa-chevron-right"></i>
             </button>
+            <button className="button login__submit" onClick={() => window.location.href='/'}>
+            <span className="button__text">Already have an Account?Login</span>
+            <i className="button__icon fas fa-chevron-right"></i>
+          </button>
           </form>
         </div>
         <div className="screen__background">

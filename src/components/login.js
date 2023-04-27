@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './css/login.css';
+import '../App.css'
+import HomePage from './homePage';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,7 +19,20 @@ const Login = () => {
       console.log(response.data);
       setIsLoggedIn(true); // set isLoggedIn state to true upon successful login
     } catch (error) {
-      console.log('Does not exist');
+      console.log('Invalid email or password');
+    }
+  };
+
+
+  const handleGetUser = async () => {
+    try {
+      const response = await axios.get('http://localhost:4000/api/user', {
+        withCredentials: true, // send cookie with the request
+      });
+      console.log(response.data);
+      setUserData(response.data.data); // set user data state
+    } catch (error) {
+      console.log(error.response.data);
     }
   };
 
@@ -25,8 +40,15 @@ const Login = () => {
     // if user is logged in, show the main app
     return (
       <div>
-        <h1>Welcome to the main app!</h1>
-        {/* add your main app code here */}
+        <HomePage></HomePage>
+        <button onClick={handleGetUser}>Get User Data</button>
+        {userData && (
+          <div>
+            <h2>User Data:</h2>
+            <p>{`Name: ${userData.name}`}</p>
+            <p>{`Email: ${userData.email}`}</p>
+          </div>
+        )}
       </div>
     );
   } else {

@@ -1,46 +1,41 @@
-import React from 'react'
-import '../App.css'
+import React from 'react';
+import { useState } from 'react';
+import '../App.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import { Highlights } from './Highlights';
-import {Content } from './Content';
-
-
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route
-} from 'react-router-dom';
-import Login from './login';
-import Register from './register';
-
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 const Navbar1 = () => {
+  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleLogout = () => {
+      setIsLoggedIn(false);
+     
+    sessionStorage.removeItem('userId'); // remove userId from session storage upon logout
+    // Perform logout logic here
+    console.log('User logged out!');
+    // Redirect to login page
+    window.location.href = '/';
+  };
+
+
+
   return (
-    <Router>
     <div className="App">
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="/">Navbar</Navbar.Brand>
+          <Navbar.Brand href="/homePage">Home</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/Highlights">HighLights</Nav.Link>
             <Nav.Link href="/Content">Content</Nav.Link>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Link href="/register">Register</Nav.Link>
           </Nav>
+          <Button variant="outline-light" onClick={handleLogout}>Logout</Button>
         </Container>
       </Navbar>
-    <Routes>
-      <Route path='/Highlights' element={<Highlights></Highlights>}></Route>
-      <Route path='/Content' element={<Content></Content>}></Route>
-      <Route path='/login' element={<Login></Login>}></Route>
-      <Route path='/register' element={<Register></Register>}></Route>
-     
-    </Routes>
     </div>
-    </Router>
   );
-}
+};
 
-export default Navbar1
+export default Navbar1;
