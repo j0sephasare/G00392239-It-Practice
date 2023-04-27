@@ -25,9 +25,11 @@ const Register = () => {
       <div className="screen">
         <div className="screen__content">
           <form className="login" onSubmit={handleSignUp}>
+          <h3>Sign Up</h3>
             <div className="login__field">
             <label>
               Name:
+              <br/>
               <input
                 type="text"
                 value={name}
@@ -39,6 +41,7 @@ const Register = () => {
               <i className="login__icon fas fa-lock"></i>
               <label>
                 Email:
+                <br/>
                 <input
                   type="email"
                   value={email}
@@ -50,6 +53,7 @@ const Register = () => {
               <i className="login__icon fas fa-lock"></i>
               <label>
                 Password:
+                <br />
                 <input
                   type="password"
                   value={password}

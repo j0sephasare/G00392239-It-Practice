@@ -36,7 +36,9 @@ const Login = () => {
         <div className="screen">
           <div className="screen__content">
             <form className="login" onSubmit={handleLogin}>
+            <h3>Log In</h3>
               <div className="login__field">
+              
                 <label>
                   Email:
                   <br />
@@ -63,8 +65,14 @@ const Login = () => {
                 <span className="button__text">Log In Now</span>
                 <i className="button__icon fas fa-chevron-right"></i>
               </button>
+              <br />
+              <button className="button login__submit" onClick={() => window.location.href='/register'}>
+            <span className="button__text">Sign Up</span>
+            <i className="button__icon fas fa-chevron-right"></i>
+          </button>
             </form>
           </div>
+
           <div className="screen__background">
             <span className="screen__background__shape screen__background__shape4"></span>
             <span className="screen__background__shape screen__background__shape3"></span>
