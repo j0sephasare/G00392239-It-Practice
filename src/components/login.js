@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../App.css'
+import './css/login.css';
 import HomePage from './homePage';
 
 const Login = () => {

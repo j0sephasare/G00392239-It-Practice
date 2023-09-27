@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import '../App.css'
-import Leagues from './Leagues'
-import Standings from './Standings'
-import Navbar1 from './Navbar'
+import React, { useState } from 'react';
+import '../App.css';
+import Leagues from './Leagues';
+import Standings from './Standings';
+import Navbar1 from './Navbar';
 
 export function Content() {
   const [active, setActive] = useState(true);
@@ -20,7 +20,6 @@ export function Content() {
           </div>
         </div>
         {active ? <Leagues /> : <Standings />}
-        
       </div>
     </div>
   );
